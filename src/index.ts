@@ -1,12 +1,12 @@
-import express from "express";
+import { bunny } from "./lib";
 
-const app = express();
-const port = Number(process.env.PORT) || 8080;
+const port = process.env.PORT || 8080;
 
-app.get("/", (req, res) => {
-    res.send({ success: true });
-});
+const app = bunny();
+
+app.get("/", (req, res) => res.json({ success: true, path: "/" }));
+app.get("/about", (req, res) => res.json({ success: true, path: "/about" }));
 
 app.listen(port, () => {
-    console.log("app is active on port " + port);
+    console.log("server is on port " + port);
 });
